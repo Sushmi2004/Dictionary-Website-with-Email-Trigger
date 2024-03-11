@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Header */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        *
+        {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        body, html {
+    font-size: 12px;
+    font-family: sans-serif;
+    
+    display: absolute;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Add this rule to hide horizontal scrollbar */
+}
+
+        #home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    
+    padding: 0.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the Background Video (visible only on the first page) */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.back-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+/* Style for Logo, Navigation, and Other First Page Content */
+.logo {
+    position: absolute;
+    top: -20px;
+    left: 1px;
+    z-index: 3;
+    width: 200px;
+    height: 200px;
+}
+
+nav {
+    position: absolute;
+    top: 48px;
+    right: 20px;
+    /* Other navigation styles go here */
+}
+
+/* Styles for Other Sections (About Us, Profile, Contact Us) */
+#about, #profile, #contact {
+    padding: 40px;
+    /* Other section styles go here */
+}
+
+
+        /* Styling for the animation */
+        .large-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Match the video's height */
+            overflow: hidden;
+            background-size: cover;
+            background-position: center center;
+            z-index: 1; /* Place the animation above the video */
+        }
+
+        .main-title {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            color: #f9f1e9;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%,-50%,0);
+            transform: translate3d(-50%,-50%,0);
+        }
+
+        .demo-1 .main-title {
+            text-transform: uppercase;
+            font-size: 4.2em;
+            letter-spacing: 0.1em;
+        }
+
+        .main-title .thin {
+            font-weight: 200;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .demo-1 .main-title {
+                font-size: 3em;
+            }
+        }
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(12,3,51,0.3),rgba(12,3,51,0.3));
+            position: relative;
+            padding: 0.5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+            .back-video {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-aspect-ratio: 16/9) {
+            .back-video {
+                width: 100%;
+                height:auto;
+            }
+        }
+        .logo {
+    position: absolute;
+    top: -20px; /* Adjust the top distance as needed */
+    left: 1px; /* Adjust the left distance as needed */
+    z-index: 3; /* Ensure the logo appears over the video and the navigation */
+    width: 200px; /* Same width as navigation items */
+    height: 200px; /* Same height as navigation items */
+}
+
+        nav {
+            position: absolute;
+            top: 48px;
+            right: 20px;
+            width: auto; /* Adjust the width as needed */
+            background-color: transparent; /* Remove background color */
+            border-radius: 8px;
+            font-size: 0;
+            z-index: 2; /* Ensure the nav bar appears over the video */
+        }
+
+        nav a {
+            line-height: 50px;
+            height: 100%;
+            font-size: 15px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        nav .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all .5s ease 0s;
+            border-radius: 8px;
+        }
+
+        a:nth-child(1) {
+            width: 100px;
+        }
+
+        a:nth-child(2) {
+            width: 110px;
+        }
+
+        a:nth-child(3) {
+            width: 100px;
+        }
+
+        a:nth-child(4) {
+            width: 160px;
+        }
+
+        a:nth-child(5) {
+            width: 120px;
+        }
+
+        nav .start-home, a:nth-child(1):hover~.animation {
+            width: 100px;
+            left: 0;
+            background-color: #1abc9c;
+        }
+
+        nav .start-about, a:nth-child(2):hover~.animation {
+            width: 110px;
+            left: 100px;
+            background-color: #e74c3c;
+        }
+
+        nav .start-blog, a:nth-child(3):hover~.animation {
+            width: 100px;
+            left: 210px;
+            background-color: #3498db;
+        }
+
+        nav .start-portefolio, a:nth-child(4):hover~.animation {
+            width: 160px;
+            left: 310px;
+            background-color: #9b59b6;
+        }
+
+        nav .start-contact, a:nth-child(5):hover~.animation {
+            width: 120px;
+            left: 470px;
+            background-color: #e67e22;
+        }
+
+        body {
+            font-size: 12px;
+            font-family: sans-serif;
+            background-color:#f9f1e9;
+            display:absolute;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+
+        h1 {
+            position:relative;
+            font-size: 6em;
+            color: #222;
+
+        }
+        h1::before{
+            content:attr(data-text);
+            position: absolute;
+            color:rgb(244, 234, 234);
+            width: 350px;
+            overflow:hidden;
+            white-space:nowrap;
+            border-right: 4px solid #fbf8f8;
+            animation: animate 8s linear infinite;
+            filter: drop-shadow(0 0 20px #7c7272) drop-shadow(0 0 20px #7c7272);
+        }
+
+        p {
+            position: absolute;
+            
+            width: 100%;
+            text-align: center;
+            color: #ecf0f1;
+            font-family: 'Cherry Swash', cursive;
+            font-size: 16px;
+            padding: 5px;
+            margin: auto;
+        }
+
+        span {
+            color: #2BD6B4;
+        }
+
+        .content{
+  text-align: center;
+}
+.overlay {
+    position:absolute; /* Change to fixed position */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+   /* transition: opacity 1s ease-in-out;*/
+    z-index: 2; /* Ensure it's above the video */
+}
+
+.content {
+    text-align: center;
+    color: white;
+}
+
+
+
+ @keyframes animate{
+    0%,10%,100%
+    {
+        width: 0;
+    }
+    70%,90%
+    {
+        width:100%;
+    }
+ }  
+
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="content">
+            <h1 data-text="Experience a Fresh Way to Learn Words">Experience a Fresh Way to Learn Words</h1>
+        </div>
+
+    </div>
+    <section id="home" class="video-container">
+        <video autoplay loop muted playsinline class="back-video">
+            <source src="blackbg.mp4" type="video/mp4">
+        </video>
+        <img src="logo1.png" class="logo">
+        <nav>
+            
+            <a href="#">Home</a>
+            <a href="word.html">Word</a>
+            <a href="search.php">Search</a>
+            <a href="translator.html">Translator</a>
+            <a href="login.php">Login/Register</a>
+            <div class="animation start-home"></div>
+        </nav>
+        
+        <div class="hero">
+            <div id="large-header" class="large-header">
+                <canvas id="demo-canvas"></canvas>
+            </div>
+        </div>
+    </section>
+   
+
+   
+    
+    
+
+   
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+         $(document).ready(function() {
+        // Show the overlay with a fade-in effect
+        $('.overlay').css('opacity', '1');
+    });
+         (function() {
+
+var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
+
+// Main
+initHeader();
+initAnimation();
+addListeners();
+
+function initHeader() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    target = {x: width/2, y: height/2};
+
+    largeHeader = document.getElementById('large-header');
+    largeHeader.style.height = height+'px';
+
+    canvas = document.getElementById('demo-canvas');
+    canvas.width = width;
+    canvas.height = height;
+    ctx = canvas.getContext('2d');
+
+    // create points
+    points = [];
+    for(var x = 0; x < width; x = x + width/20) {
+        for(var y = 0; y < height; y = y + height/20) {
+            var px = x + Math.random()*width/20;
+            var py = y + Math.random()*height/20;
+            var p = {x: px, originX: px, y: py, originY: py };
+            points.push(p);
+        }
+    }
+
+    // for each point find the 5 closest points
+    for(var i = 0; i < points.length; i++) {
+        var closest = [];
+        var p1 = points[i];
+        for(var j = 0; j < points.length; j++) {
+            var p2 = points[j]
+            if(!(p1 == p2)) {
+                var placed = false;
+                for(var k = 0; k < 5; k++) {
+                    if(!placed) {
+                        if(closest[k] == undefined) {
+                            closest[k] = p2;
+                            placed = true;
+                        }
+                    }
+                }
+
+                for(var k = 0; k < 5; k++) {
+                    if(!placed) {
+                        if(getDistance(p1, p2) < getDistance(p1, closest[k])) {
+                            closest[k] = p2;
+                            placed = true;
+                        }
+                    }
+                }
+            }
+        }
+        p1.closest = closest;
+    }
+
+    // assign a circle to each point
+    for(var i in points) {
+        var c = new Circle(points[i], 2+Math.random()*2, 'rgba(255,255,255,0.3)');
+        points[i].circle = c;
+    }
+}
+
+// Event handling
+function addListeners() {
+    if(!('ontouchstart' in window)) {
+        window.addEventListener('mousemove', mouseMove);
+    }
+    window.addEventListener('scroll', scrollCheck);
+    window.addEventListener('resize', resize);
+}
+
+function mouseMove(e) {
+    var posx = posy = 0;
+    if (e.pageX || e.pageY) {
+        posx = e.pageX;
+        posy = e.pageY;
+    }
+    else if (e.clientX || e.clientY)    {
+        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    target.x = posx;
+    target.y = posy;
+}
+
+function scrollCheck() {
+    if(document.body.scrollTop > height) animateHeader = false;
+    else animateHeader = true;
+}
+
+function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    largeHeader.style.height = height+'px';
+    canvas.width = width;
+    canvas.height = height;
+}
+
+// animation
+function initAnimation() {
+    animate();
+    for(var i in points) {
+        shiftPoint(points[i]);
+    }
+}
+
+function animate() {
+    if(animateHeader) {
+        ctx.clearRect(0,0,width,height);
+        for(var i in points) {
+            // detect points in range
+            if(Math.abs(getDistance(target, points[i])) < 4000) {
+                points[i].active = 0.3;
+                points[i].circle.active = 0.6;
+            } else if(Math.abs(getDistance(target, points[i])) < 20000) {
+                points[i].active = 0.1;
+                points[i].circle.active = 0.3;
+            } else if(Math.abs(getDistance(target, points[i])) < 40000) {
+                points[i].active = 0.02;
+                points[i].circle.active = 0.1;
+            } else {
+                points[i].active = 0;
+                points[i].circle.active = 0;
+            }
+
+            drawLines(points[i]);
+            points[i].circle.draw();
+        }
+    }
+    requestAnimationFrame(animate);
+}
+
+function shiftPoint(p) {
+    TweenLite.to(p, 1+1*Math.random(), {x:p.originX-50+Math.random()*100,
+        y: p.originY-50+Math.random()*100, ease:Circ.easeInOut,
+        onComplete: function() {
+            shiftPoint(p);
+        }});
+}
+
+// Canvas manipulation
+function drawLines(p) {
+    if(!p.active) return;
+    for(var i in p.closest) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.closest[i].x, p.closest[i].y);
+        ctx.strokeStyle = 'rgba(156,217,249,'+ p.active+')';
+        ctx.stroke();
+    }
+}
+
+function Circle(pos,rad,color) {
+    var _this = this;
+
+    // constructor
+    (function() {
+        _this.pos = pos || null;
+        _this.radius = rad || null;
+        _this.color = color || null;
+    })();
+
+    this.draw = function() {
+        if(!_this.active) return;
+        ctx.beginPath();
+        ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'rgba(156,217,249,'+ _this.active+')';
+        ctx.fill();
+    };
+}
+
+// Util
+function getDistance(p1, p2) {
+    return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+}
+let lastScrollTop = 0;
+const videoContainer = document.querySelector('.video-container');
+const textContainer = document.querySelector('.content');
+
+window.addEventListener('scroll', function() {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+        // Scrolling down, hide the video and text containers
+        videoContainer.style.display = 'none';
+        textContainer.style.display = 'none';
+    } else {
+        // Scrolling up, show the video and text containers
+        videoContainer.style.display = 'block';
+        textContainer.style.display = 'block';
+    }
+
+    lastScrollTop = currentScrollTop;
+});
+
+
+})();
+    </script>
+</body>
+</html>
