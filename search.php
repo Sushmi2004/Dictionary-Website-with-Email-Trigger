@@ -727,8 +727,7 @@ body {
   <button id="audioButton"><span class='searchButton-txt'>A<span class='faulty-letter'>UDIO🔊</span></span></button>
       
   <div id="resultContainer">
-    <p id="definition"></p>
-    <p id="pronunciation"></p>
+    <p id="definition"></p> 
     <p id="examples"></p>
     <p id="synonyms"></p>
     <p id="antonyms"></p>
