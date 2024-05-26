@@ -718,7 +718,7 @@ body {
             <path class="particle plus"/>
         </g>
     </svg>
-    <input type="text "aria-label="Search for inspiration" id="wordInput"list="wordSuggestions"/>
+    <input type="text " id="wordInput"list="wordSuggestions"/>
 </div>
 
 
